@@ -68,14 +68,14 @@
     <img src="images/despertardd.png" alt="produto">
     <div class="product-details">
       <div class="product-title">Despertar Digestivo - Receita para Evacuar (Envio imediato logo após o Pagamento)</div>
-      <div class="product-sub">Despertar Digestivo inc</div>
-      <div class="product-price" id="preco">149,00 MT</div>
+      <div class="product-sub">Despertar Digestivo Inc</div>
+      <div class="product-price" id="preco">249,00 MT</div>
     </div>
   </div>
   <label for="nome">Nome completo</label>
   <input type="text" id="nome" placeholder="Seu nome">
-  <label for="email">Email</label>
-  <input type="email" id="email" placeholder="seu@email.com">
+  <label for="Whatsapp">Whatsapp</label>
+  <input type="text" id="Whatsapp" placeholder="Insira o seu Whatsapp">
   <label>Método de pagamento</label>
   <div class="method-select">
     <button type="button" class="method-btn active" id="btn-mpesa" onclick="selectMetodo('mpesa')">📱 M-Pesa</button>
@@ -86,7 +86,7 @@
   <label>Detalhes da compra</label>
   <div class="price-box">
     <span>Despertar Digestivo</span>
-    <span>149,00 MT</span>
+    <span>249,00 MT</span>
   </div>
   <button class="submit-btn" id="btn-pagar" onclick="pagar()">
     <span id="btn-text">Comprar agora</span>
@@ -105,7 +105,7 @@ function selectMetodo(metodo) {
 
 async function pagar() {
   const nome = document.getElementById("nome").value.trim();
-  const email = document.getElementById("email").value.trim();
+  const Whatsapp = document.getElementById("Whatsapp").value.trim();
   const numero = document.getElementById("numero").value.trim();
   const valorTexto = document.getElementById("preco").textContent.trim();
   const valor = valorTexto.replace(" MT", "").replace(",", ".");
@@ -113,7 +113,7 @@ async function pagar() {
   const btnText = document.getElementById("btn-text");
   const btnSpinner = document.getElementById("btn-spinner");
 
-  if (!nome || !email || !numero) {
+  if (!nome || !Whatsapp || !numero) {
     Swal.fire('Campos obrigatórios!', 'Por favor preencha todos os campos.', 'error');
     return;
   }
@@ -160,7 +160,7 @@ async function pagar() {
       body: new URLSearchParams({
         client_id: "9fa16fb1-6d57-4492-8330-577439e15598",
         amount: valor,
-        reference: "ensinapay",
+        reference: "despertardigestivo",
         phone: numero
       })
     });
@@ -170,7 +170,7 @@ async function pagar() {
     console.log("RESPOSTA COMPLETA:", JSON.stringify(resultado, null, 2));
 
     if (resultado.success && resultado.success.includes("sucesso")) {
-      localStorage.setItem("email", email);
+      localStorage.setItem("Whatsapp", Whatsapp);
       localStorage.setItem("telefone", numero);
 
       try {
@@ -187,7 +187,7 @@ async function pagar() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           title: "💰 Venda Realizada!",
-          text: `Cliente: ${nome} - Valor: ${valor} MT`,
+          text: `Cliente: ${nome} - Valor: ${valor} MT - Whatsapp: ${Whatsapp}`,
           sound: "default"
         })
       });
