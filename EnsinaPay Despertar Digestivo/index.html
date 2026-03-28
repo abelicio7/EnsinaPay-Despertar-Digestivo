@@ -69,7 +69,7 @@
     <div class="product-details">
       <div class="product-title">Despertar Digestivo - Receita para Evacuar (Envio imediato logo após o Pagamento)</div>
       <div class="product-sub">Despertar Digestivo Inc</div>
-      <div class="product-price" id="preco">249,00 MT</div>
+      <div class="product-price" id="preco">197,00 MT</div>
     </div>
   </div>
   <label for="nome">Nome completo</label>
@@ -86,7 +86,7 @@
   <label>Detalhes da compra</label>
   <div class="price-box">
     <span>Despertar Digestivo</span>
-    <span>249,00 MT</span>
+    <span>197,00 MT</span>
   </div>
   <button class="submit-btn" id="btn-pagar" onclick="pagar()">
     <span id="btn-text">Comprar agora</span>
@@ -160,7 +160,7 @@ async function pagar() {
       body: new URLSearchParams({
         client_id: "9fa16fb1-6d57-4492-8330-577439e15598",
         amount: valor,
-        reference: "despertardigestivo",
+        reference: "ensinapay",
         phone: numero
       })
     });
